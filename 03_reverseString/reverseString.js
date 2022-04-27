@@ -1,7 +1,5 @@
 const reverseString = function (string) {
-    // loop through string backwards, adding each letter to an empty reverse array.
-
-    // join the reverse array
+    return string.split('').reverse().join('');
 };
 
 // Do not edit below this line
