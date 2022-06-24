@@ -1,13 +1,8 @@
 const fibonacci = function (n) {
   const array = [];
-
-  if (typeof n === 'string') {
-    n = parseInt(n);
-  }
+  if (typeof n === 'string') n = parseInt(n);
   if (n < 0) return 'OOPS'
-  if (n === 1) {
-    array.push(1);
-  }
+  if (n === 1) array.push(1);
   if (n >= 2) {
     array.push(1, 1);
     for (let i = 2; i < n; i++) {
