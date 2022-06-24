@@ -1,10 +1,21 @@
-const fibonacci = function (num) {
+const fibonacci = function (n) {
+  const array = [];
 
-  // loop x amount of times, adding numbers to array.  first two numbers are 1.
-
+  if (typeof n === 'string') {
+    n = parseInt(n);
+  }
+  if (n < 0) return 'OOPS'
+  if (n === 1) {
+    array.push(1);
+  }
+  if (n >= 2) {
+    array.push(1, 1);
+    for (let i = 2; i < n; i++) {
+      array.push((array[i - 2]) + (array[i - 1]));
+    }
+  }
+  return array[array.length - 1]
 };
-
-//fibonacci(4) // returns the 4th member of the series: 3  (1, 1, 2, 3)
 
 // Do not edit below this line
 module.exports = fibonacci;
