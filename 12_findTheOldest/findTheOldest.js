@@ -18,15 +18,27 @@ const people = [
 
 const findTheOldest = function (array) {
 
-  array.sort((a, b) => {
+  //refactor this
+  // array.sort((a, b) => {
+  //   if ((a.yearOfDeath - a.yearOfBirth) > (b.yearOfDeath - b.yearOfBirth)) {
+  //     return -1;
+  //   } else return 1;
+  // })
+  // return array[0];
 
-    if ((a.yearOfDeath - a.yearOfBirth) > (b.yearOfDeath - b.yearOfBirth)) {
-      return -1;
-    } else return 1;
-  })
+  //reduce
+  return array.reduce((obj, person) => {
+    //if object is empty, add person to obj
+    // if person age > obj, replace obj w new person
 
-  return array[0];
+    if (person.yearOfDeath - person.yearOfBirth > obj.yearOfDeath - obj.yearOfBirth) {
+      // obj[person] = obj;
+      obj = obj[person]
+    }
 
+    return obj
+
+  }, {});
 }
 
 
