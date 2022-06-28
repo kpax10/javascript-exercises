@@ -29,16 +29,24 @@ const findTheOldest = function (array) {
 
   //reduce
   return array.reduce((obj, person) => {
-    if (!obj) {
+    if (!person.yearOfDeath) {
+      person.yearOfDeath = 2022;
+    }
+    if (Object.keys(obj).length === 0) {
       obj = person;
     }
-    if (person.yearOfDeath - person.yearOfBirth > obj.yearOfDeath - obj.yearOfBirth) {
+    let personAge = person.yearOfDeath - person.yearOfBirth;
+    let objAge = obj.yearOfDeath - obj.yearOfBirth;
+    if (personAge > objAge) {
       obj = person;
     }
     return obj
-  })
+  }, {})
 }
 console.log(findTheOldest(people));
 
 // Do not edit below this line
 module.exports = findTheOldest;
+
+
+// if person.yearOfDeath does not exist, then make it current year.
