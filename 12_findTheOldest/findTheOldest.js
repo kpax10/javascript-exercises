@@ -1,50 +1,35 @@
-const people = [
-  {
-    name: "Carly",
-    yearOfBirth: 1942,
-    yearOfDeath: 1970,
-  },
-  {
-    name: "Ray",
-    yearOfBirth: 1962,
-    yearOfDeath: 2011,
-  },
-  {
-    name: "Jane",
-    yearOfBirth: 1912,
-    yearOfDeath: 1941,
-  },
-]
-
 const findTheOldest = function (array) {
+  return array.reduce((oldest, currentPerson) => {
+    const oldestAge = getAge(oldest.yearOfBirth, oldest.yearOfDeath);
+    const currentAge = getAge(currentPerson.yearOfBirth, currentPerson.yearOfDeath);
+    return oldestAge < currentAge ? currentPerson : oldest;
+  })
+};
 
-  //refactor this
-  // array.sort((a, b) => {
-  //   if ((a.yearOfDeath - a.yearOfBirth) > (b.yearOfDeath - b.yearOfBirth)) {
-  //     return -1;
-  //   } else return 1;
-  // })
-  // return array[0];
+const getAge = function (birth, death) {
+  if (!death) {
+    death = new Date().getFullYear();
+  }
+  return death - birth;
+};
 
-
-  //reduce
-  return array.reduce((obj, person) => {
-    if (!person.yearOfDeath) {
-      person.yearOfDeath = 2022;
-    }
-    if (Object.keys(obj).length === 0) {
-      obj = person;
-    }
-    let personAge = person.yearOfDeath - person.yearOfBirth;
-    let objAge = obj.yearOfDeath - obj.yearOfBirth;
-    if (personAge > objAge) {
-      obj = person;
-    }
-    return obj
-  }, {})
-}
-console.log(findTheOldest(people));
-
+// const findTheOldest = function (array) {
+//   return array.reduce((obj, person) => {
+//     const personAge = person.yearOfDeath - person.yearOfBirth;
+//     const objAge = obj.yearOfDeath - obj.yearOfBirth;
+//     if (!person.yearOfDeath) {
+//       const aliveDate = new Date();
+//       person.yearOfDeath = aliveDate.getFullYear();
+//     }
+//     if (Object.keys(obj).length === 0) {
+//       obj = person;
+//     }
+//     if (personAge > objAge) {
+//       obj = person;
+//     }
+//     return obj
+//   }, {})
+// }
 // Do not edit below this line
 module.exports = findTheOldest;
 
